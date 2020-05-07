@@ -141,3 +141,6 @@
 
 	/// Messages currently seen by this client
 	var/list/seen_messages
+
+	/// TODO: Autodoc this
+	var/list/spell_tabs = list()
