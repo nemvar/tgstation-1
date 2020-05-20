@@ -10,8 +10,6 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	plane           = OPENSPACE_BACKDROP_PLANE
 	mouse_opacity 	= MOUSE_OPACITY_TRANSPARENT
 	layer           = SPLASHSCREEN_LAYER
-	//I don't know why the others are aligned but I shall do the same.
-	vis_flags		= VIS_INHERIT_ID
 
 /turf/open/transparent/openspace
 	name = "open space"
@@ -19,6 +17,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	icon_state = "transparent"
 	baseturfs = /turf/open/transparent/openspace
 	CanAtmosPassVertical = ATMOS_PASS_YES
+	vis_flags = VIS_INHERIT
 	//mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
