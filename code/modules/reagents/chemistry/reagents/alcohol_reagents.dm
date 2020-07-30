@@ -45,7 +45,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		if(boozepwr > 0)
 			var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
 			if (istype(L))
-				L.applyOrganDamage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * L.alcohol_tolerance, 0))/150))
+				L.adjustOrganDamage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * L.alcohol_tolerance, 0))/150))
 	return ..()
 
 /datum/reagent/consumable/ethanol/expose_obj(obj/O, reac_volume)
@@ -259,7 +259,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				M.adjustBruteLoss(15)
 		else
 			to_chat(M, "<span class='userdanger'>You scream in terror as you go blind!</span>")
-			eyes.applyOrganDamage(eyes.maxHealth)
+			eyes.adjustOrganDamage(eyes.maxHealth)
 			M.emote("scream")
 
 	if(prob(3) && iscarbon(M))
@@ -1379,7 +1379,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/neurotoxin/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(50)
 	M.dizziness +=2
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 150)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 0, 150)
 	if(prob(20))
 		M.adjustStaminaLoss(10)
 		M.drop_all_held_items()

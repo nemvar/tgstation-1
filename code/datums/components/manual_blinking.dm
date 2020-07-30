@@ -56,7 +56,7 @@
 			to_chat(C, "<span class='userdanger'>Your eyes begin to wither, you need to blink!</span>")
 			warn_dying = TRUE
 
-		E.applyOrganDamage(damage_rate)
+		E.adjustOrganDamage(damage_rate)
 	else if(world.time > (last_blink + check_every))
 		if(!warn_grace)
 			to_chat(C, "<span class='danger'>You feel a need to blink!</span>")

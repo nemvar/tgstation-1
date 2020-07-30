@@ -347,7 +347,7 @@
 		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL)
 			M.blood_volume += 3
 	else  // Will deal about 90 damage when 50 units are thrown
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 0, 150)
 		M.adjustToxLoss(2, 0)
 		M.adjustFireLoss(2, 0)
 		M.adjustOxyLoss(2, 0)
@@ -364,7 +364,7 @@
 	M.IgniteMob()			//Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 	M.adjustToxLoss(1, 0)
 	M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard?
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 0, 150)
 	holder.remove_reagent(type, 1)
 
 /datum/reagent/medicine/omnizine/godblood
@@ -2311,7 +2311,7 @@
 		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL)
 			M.blood_volume += 3
 	else
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 0, 150)
 		M.adjustToxLoss(2, FALSE)
 		M.adjustFireLoss(2, FALSE)
 		M.adjustOxyLoss(2, FALSE)

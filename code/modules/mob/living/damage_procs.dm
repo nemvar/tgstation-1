@@ -233,10 +233,10 @@
 		updatehealth()
 	return amount
 
-/mob/living/proc/adjustOrganLoss(slot, amount, maximum)
+/mob/living/proc/adjustOrganLoss(slot, amount, minimum, maximum)
 	return
 
-/mob/living/proc/setOrganLoss(slot, amount, maximum)
+/mob/living/proc/setOrganLoss(slot, amount)
 	return
 
 /mob/living/proc/getOrganLoss(slot)

@@ -119,12 +119,13 @@
   * Arguments:
   * * slot - organ slot, like [ORGAN_SLOT_HEART]
   * * amount - damage to be done
-  * * maximum - currently an arbitrarily large number, can be set so as to limit damage
+  * * minimum - currently an arbitrarily large number, can be set so as to limit healing, only important if amount < 0, can not be below 0.
+  * * maximum - currently an arbitrarily large number, can be set so as to limit damage, only important if amount > 0
   */
-/mob/living/carbon/adjustOrganLoss(slot, amount, maximum)
+/mob/living/carbon/adjustOrganLoss(slot, amount, minimum, maximum)
 	var/obj/item/organ/O = getorganslot(slot)
 	if(O && !(status_flags & GODMODE))
-		O.applyOrganDamage(amount, maximum)
+		O.adjustOrganDamage(amount, minimum, maximum)
 
 /**
   * If an organ exists in the slot requested, and we are capable of taking damage (we don't have [GODMODE] on), call the set damage proc on that organ, which can

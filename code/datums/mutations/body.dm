@@ -446,7 +446,7 @@
 			to_chat(H, "<span class='userdanger'>You are knocked down by a wave of... blood?!</span>")
 		H.Stun(20)
 		H.blur_eyes(20)
-		eyes?.applyOrganDamage(5)
+		eyes?.adjustOrganDamage(5)
 		H.confused += 3
 	for(var/mob/living/silicon/S in view(2,owner))
 		to_chat(S, "<span class='userdanger'>Your sensors are disabled by a shower of blood!</span>")

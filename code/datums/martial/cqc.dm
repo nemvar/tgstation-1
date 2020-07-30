@@ -73,7 +73,7 @@
 		to_chat(A, "<span class='danger'>You kick [D]'s head, knocking [D.p_them()] out!</span>")
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
 		D.SetSleeping(300)
-		D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
+		D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 0, 150)
 	return TRUE
 
 /datum/martial_art/cqc/proc/Pressure(mob/living/carbon/human/A, mob/living/carbon/human/D)

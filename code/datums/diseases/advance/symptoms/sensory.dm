@@ -90,7 +90,7 @@
 			var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
 			if(!eyes) // only dealing with eye stuff from here on out
 				return
-			eyes.applyOrganDamage(-2)
+			eyes.adjustOrganDamage(-2)
 			if(HAS_TRAIT_FROM(M, TRAIT_BLIND, EYE_DAMAGE))
 				if(prob(20))
 					to_chat(M, "<span class='warning'>Your vision slowly returns...</span>")

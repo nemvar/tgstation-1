@@ -62,7 +62,7 @@
 		display_results(user, target, "<span class='warning'>You remove the wrong part, causing more damage!</span>",
 			"<span class='notice'>[user] successfully lobotomizes [target]!</span>",
 			"<span class='notice'>[user] completes the surgery on [target]'s brain.</span>")
-		B.applyOrganDamage(80)
+		B.adjustOrganDamage(80)
 		switch(rand(1,3))
 			if(1)
 				target.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_MAGIC)

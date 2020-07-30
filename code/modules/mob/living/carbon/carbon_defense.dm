@@ -379,15 +379,15 @@
 		if (damage == 1)
 			to_chat(src, "<span class='warning'>Your eyes sting a little.</span>")
 			if(prob(40))
-				eyes.applyOrganDamage(1)
+				eyes.adjustOrganDamage(1)
 
 		else if (damage == 2)
 			to_chat(src, "<span class='warning'>Your eyes burn.</span>")
-			eyes.applyOrganDamage(rand(2, 4))
+			eyes.adjustOrganDamage(rand(2, 4))
 
 		else if( damage >= 3)
 			to_chat(src, "<span class='warning'>Your eyes itch and burn severely!</span>")
-			eyes.applyOrganDamage(rand(12, 16))
+			eyes.adjustOrganDamage(rand(12, 16))
 
 		if(eyes.damage > 10)
 			blind_eyes(damage)
@@ -402,7 +402,7 @@
 				else if(prob(eyes.damage - 25))
 					if(!is_blind())
 						to_chat(src, "<span class='warning'>You can't see anything!</span>")
-					eyes.applyOrganDamage(eyes.maxHealth)
+					eyes.adjustOrganDamage(eyes.maxHealth)
 
 			else
 				to_chat(src, "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>")

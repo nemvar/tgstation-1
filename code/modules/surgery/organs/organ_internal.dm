@@ -85,19 +85,19 @@
 /obj/item/organ/proc/on_death()	//runs decay when outside of a person
 	if(organ_flags & (ORGAN_SYNTHETIC | ORGAN_FROZEN))
 		return
-	applyOrganDamage(maxHealth * decay_factor)
+	adjustOrganDamage(maxHealth * decay_factor)
 
 /obj/item/organ/proc/on_life()	//repair organ damage if the organ is not failing
 	if(organ_flags & ORGAN_FAILING)
 		return
 	if(organ_flags & ORGAN_SYNTHETIC_EMP) //Synthetic organ has been emped, is now failing.
-		applyOrganDamage(maxHealth * decay_factor)
+		adjustOrganDamage(maxHealth * decay_factor)
 		return
 	///Damage decrements by a percent of its maxhealth
 	var/healing_amount = -(maxHealth * healing_factor)
 	///Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health
 	healing_amount -= owner.satiety > 0 ? 4 * healing_factor * owner.satiety / MAX_SATIETY : 0
-	applyOrganDamage(healing_amount)
+	adjustOrganDamage(healing_amount)
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
@@ -136,10 +136,10 @@
 	if(organ_flags & ORGAN_FROZEN)
 		return TRUE
 
-	applyOrganDamage(25)
+	adjustOrganDamage(25)
 	OnEatFrom(M, user)
 	if(istype(src, /obj/item/organ/brain)) //brain takes some extra damage
-		applyOrganDamage(25)
+		adjustOrganDamage(25)
 		if(!iszombie(M)) //brains...
 			M.adjust_disgust(50)
 	else if(istype(src, /obj/item/organ/heart)) //heart makes a puddle of blood
@@ -172,12 +172,17 @@
 	return //so we don't grant the organ's action to mobs who pick up the organ.
 
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
-/obj/item/organ/proc/applyOrganDamage(d, maximum = maxHealth)	//use for damaging effects
+/obj/item/organ/proc/adjustOrganDamage(d, minimum = 0, maximum = INFINITY)	//use for damaging effects
 	if(!d) //Micro-optimization.
 		return
-	if(maximum < damage)
+	//Sets minimum and maximum to its min allowed value.
+	minimum = max(0, minimum)
+	if(d < 0)
+		if(damage <= minimum)
+			return
+	else if(damage >= maximum)
 		return
-	damage = clamp(damage + d, 0, maximum)
+	damage = clamp(damage + d, minimum, maximum)
 	var/mess = check_damage_thresholds(owner)
 	prev_damage = damage
 	if(mess && owner)
@@ -185,7 +190,7 @@
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
 /obj/item/organ/proc/setOrganDamage(d)	//use mostly for admin heals
-	applyOrganDamage(d - damage)
+	adjustOrganDamage(d - damage)
 
 /** check_damage_thresholds
   * input: M (a mob, the owner of the organ we call the proc on)

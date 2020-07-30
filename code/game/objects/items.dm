@@ -603,7 +603,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(!eyes)
 		return TRUE
 	M.adjust_blurriness(3)
-	eyes.applyOrganDamage(rand(2,4))
+	eyes.adjustOrganDamage(rand(2,4))
 	if(eyes.damage >= 10)
 		M.adjust_blurriness(15)
 		if(M.stat != DEAD)

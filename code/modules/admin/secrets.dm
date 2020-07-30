@@ -463,7 +463,7 @@
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Braindamage"))
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
 				to_chat(H, "<span class='boldannounce'>You suddenly feel stupid.</span>", confidential = TRUE)
-				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60, 80)
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60, 0, 80)
 			message_admins("[key_name_admin(usr)] made everybody brain damaged")
 
 		if("eagles")//SCRAW

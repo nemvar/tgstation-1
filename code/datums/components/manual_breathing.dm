@@ -57,7 +57,7 @@
 			to_chat(C, "<span class='userdanger'>You begin to suffocate, you need to [next_text]!</span>")
 			warn_dying = TRUE
 
-		L.applyOrganDamage(damage_rate)
+		L.adjustOrganDamage(damage_rate)
 		C.losebreath += 0.8
 	else if(world.time > (last_breath + check_every))
 		if(!warn_grace)

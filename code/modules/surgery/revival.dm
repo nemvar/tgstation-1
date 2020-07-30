@@ -67,7 +67,7 @@
 	if(target.revive(full_heal = FALSE, admin_revive = FALSE))
 		target.visible_message("<span class='notice'>...[target] wakes up, alive and aware!</span>")
 		target.emote("gasp")
-		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 199) //MAD SCIENCE
+		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 0, 199) //MAD SCIENCE
 		return TRUE
 	else
 		target.visible_message("<span class='warning'>...[target.p_they()] convulses, then lies still.</span>")
@@ -78,5 +78,5 @@
 		"<span class='notice'>[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.</span>",
 		"<span class='notice'>[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.</span>")
 	playsound(get_turf(target), 'sound/magic/lightningbolt.ogg', 50, TRUE)
-	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 180)
+	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 0, 180)
 	return FALSE

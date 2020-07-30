@@ -652,7 +652,7 @@
 	M.adjust_blurriness(-2)
 	if (!eyes)
 		return
-	eyes.applyOrganDamage(-2)
+	eyes.adjustOrganDamage(-2)
 	if(HAS_TRAIT_FROM(M, TRAIT_BLIND, EYE_DAMAGE))
 		if(prob(20))
 			to_chat(M, "<span class='warning'>Your vision slowly returns...</span>")
@@ -1382,10 +1382,10 @@
 
 		if(prob(50))
 			var/obj/item/organ/lungs/our_lungs = M.getorganslot(ORGAN_SLOT_LUNGS)
-			our_lungs.applyOrganDamage(1)
+			our_lungs.adjustOrganDamage(1)
 		else
 			var/obj/item/organ/heart/our_heart = M.getorganslot(ORGAN_SLOT_HEART)
-			our_heart.applyOrganDamage(1)
+			our_heart.adjustOrganDamage(1)
 
 // can be synthesized on station rather than bought. made by grinding a banana peel, heating it up, then mixing the banana peel powder with salglu
 /datum/reagent/medicine/coagulant/weak
