@@ -171,12 +171,15 @@
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
 
+#define MAX_ORGAN_DAMAGE 999
+
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
-/obj/item/organ/proc/adjustOrganDamage(d, minimum = 0, maximum = INFINITY)	//use for damaging effects
+/obj/item/organ/proc/adjustOrganDamage(d, minimum, maximum)	//use for damaging effects
 	if(!d) //Micro-optimization.
 		return
 	//Sets minimum and maximum to its min allowed value.
 	minimum = max(0, minimum)
+	maximum = min(MAX_ORGAN_DAMAGE, maximum)
 	if(d < 0)
 		if(damage <= minimum)
 			return
@@ -187,6 +190,8 @@
 	prev_damage = damage
 	if(mess && owner)
 		to_chat(owner, mess)
+
+#undef MAX_ORGAN_DAMAGE
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
 /obj/item/organ/proc/setOrganDamage(d)	//use mostly for admin heals
